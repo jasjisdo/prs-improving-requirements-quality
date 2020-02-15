@@ -1,16 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Functionality imports
-import datetime
-from collections import defaultdict
-import spacy
 import json
 import re
-from nltk.corpus import wordnet as wn
-from nltk.tokenize import sent_tokenize
 import time
 
-from pprint import pprint
+# Functionality imports
+import spacy
+from nltk.corpus import wordnet as wn
+from nltk.tokenize import sent_tokenize
 
 wn.ensure_loaded()
 
