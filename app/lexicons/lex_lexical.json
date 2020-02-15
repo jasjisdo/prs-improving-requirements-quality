@@ -114,7 +114,22 @@
     "vague" : {
         "title"         : "Vague",
         "description"   : "These vague words and symbols are likely to introduce ambiguity.",
-        "lexicon"       : ["/", "< >", "(", ")", "[", "]", ";", "?", "!", "adaptability", "additionally", "adequate", "aggregate", "ancillary", "arbitrary", "appropriate", "available", "as far as", "at last", "as few as possible", "as little as possible", "as many as possible", "as much as possible", "as required", "as well as", "bad", "both", "but", "but also", "but not limited to", "capable of", "capable to", "capability of", "capability", "common", "correctly", "consistent", "contemporary", "convenient", "credible", "custom", "customary", "default", "deﬁnable", "easily", "easy", "effective", "efﬁcient", "episodic", "equitable", "equitably", "eventually", "exist", "exists", "expeditiously", "fast", "fair", "fairly", "ﬁnally", "frequently", "full", "general", "generic", "good", "high-level", "impartially", "infrequently", "insigniﬁcant", "intermediate", "interactive", "in terms of", "less", "lightweight", "logical", "low-level", "maximum", "minimum", "more", "mutually-agreed", "mutually-exclusive", "mutuallyinclusive", "near", "necessary", "neutral", "not only", "only", "on the ﬂy", "particular", "physical", "powerful", "practical", "prompt", "provided", "quickly", "random", "recent", "regardless of", "relevant", "respective", "robust", "routine", "sufﬁciently", "sequential", "signiﬁcant", "simple", "speciﬁc", "strong", "there", "there is", "transient", "transparent", "timely", "undeﬁnable", "understandable", "unless", "unnecessary", "useful", "various", "varying"],
+        "lexicon"       : [
+            "/", "< >", "(", ")", "[", "]", ";", "?", "!",
+            "adaptability", "additionally", "adequate", "aggregate", "ancillary", "arbitrary", "appropriate",
+            "available", "as far as", "at last", "as few as possible", "as little as possible", "as many as possible",
+            "as much as possible", "as required", "as well as", "bad", "both", "but", "but also", "but not limited to",
+            "capable of", "capable to", "capability of", "capability", "common", "correctly", "consistent",
+            "contemporary", "convenient", "credible", "custom", "customary", "default", "deﬁnable", "easily", "easy",
+            "effective", "efficient", "episodic", "equitable", "equitably", "eventually", "exist", "exists",
+            "expeditiously", "fast", "fair", "fairly", "ﬁnally", "frequently", "full", "general", "generic", "good",
+            "high-level", "impartially", "infrequently", "insigniﬁcant", "intermediate", "interactive", "in terms of",
+            "less", "lightweight", "logical", "low-level", "maximum", "minimum", "more", "mutually-agreed",
+            "mutually-exclusive", "mutuallyinclusive", "near", "necessary", "neutral", "not only", "only", "on the ﬂy",
+            "particular", "physical", "powerful", "practical", "prompt", "provided", "quickly", "random", "recent",
+            "regardless of", "relevant", "respective", "robust", "routine", "sufﬁciently", "sequential", "signiﬁcant",
+            "simple", "speciﬁc", "strong", "there", "there is", "transient", "transparent", "timely", "undeﬁnable",
+            "understandable", "unless", "unnecessary", "useful", "various", "varying"],
         "lit_reference"  : "TB13",
         "language_construct": "Subjective Language"
     }
