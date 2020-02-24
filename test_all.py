@@ -1,4 +1,4 @@
-#### CURRENTLY NOT IN USE, ALTHOUGH READY FOR MORE TO BE ADDED ####
+""" CURRENTLY NOT IN USE, ALTHOUGH READY FOR MORE TO BE ADDED """
 
 # Import testing framework
 import unittest
