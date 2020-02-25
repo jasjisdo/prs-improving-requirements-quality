@@ -14,7 +14,7 @@ from algorithms.regexes import check_regexes
 
 
 class RequirementChecker:
-    LEXICON_LOCATION = './app/lexicons'
+    LEXICON_LOCATION = './res/lexicons'
 
     def __init__(self, reqs, config=None, is_logging=False):
         self.reqs = reqs
@@ -60,55 +60,49 @@ class RequirementChecker:
             self.config['algorithms'] = list(acceptable_amb_algs.intersection(set(self.config['algorithms'])))
             # Find the algorithms the user did not select
             algs_to_remove = acceptable_amb_algs.difference(self.config['algorithms'])
-
             for alg_name in algs_to_remove:
                 del self.amb_algs[alg_name]
 
-    def run_algs(self):
+    def run_algorithms(self):
+        req_time_start = 0.0
         # Find and save ambiguities
-        ambs_found = {}
+        ambiguities_found = {}
         # For each requirement sent
         for req_i, req in enumerate(self.reqs):
-
             # Logging
             if self.is_logging:
                 req_time_start = time.time()
                 print(f'\nReq {req_i + 1} of {len(self.reqs)}')
 
             # Put space aside for ambiguities found, even if none exist
-            ambs_found[req.id] = []
-
+            ambiguities_found[req.id] = []
             # Split the sentences so the NLP and regular expression algorithms work properly and quicker
             sentences = sent_tokenize(req.text)
-
             # For each sentence
             for sentence in sentences:
-
                 # We need this variable to offset the indexes of our matches
                 # NOTE: If req.text contains multiple identical sentences, this will not work. Currently, it is assumed that sentences are unique.
                 sentence_start_index = req.text.find(sentence)
-
                 # Convert requirement into nlp doc
                 doc = self.nlp(sentence)
-
                 # Loop through all algorithms to run, as requested by the user
                 for _, amb_alg in self.amb_algs.items():
                     # Run the algorithm attached to the object
-                    amb_alg['func'](ambs_found, amb_alg['lexicon'], req, sentence, sentence_start_index, doc)
+                    amb_alg['func'](ambiguities_found, amb_alg['lexicon'], req, sentence, sentence_start_index, doc)
 
             # Logging
             if self.is_logging:
                 print(f'Req Running Time: {time.time() - req_time_start:.2f} sec')
 
-        return ambs_found
+        return ambiguities_found
 
     def check_quality(self):
+        total_time_start = 0.0
         # Logging
         if self.is_logging:
             total_time_start = time.time()
 
-        ambs_found = self.run_algs()
-
+        ambs_found = self.run_algorithms()
         # Logging
         if self.is_logging:
             print(f'\nTotal Running Time: {time.time() - total_time_start:.2f} sec\n')
