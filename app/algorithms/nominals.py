@@ -41,8 +41,7 @@ def check_nominals(ambs_found, lexicon, req, sentence, sentence_start_index, doc
         # Return all ambiguous nominalization sequences found
         for token_seq in nominalizations:
             if token_seq:
-                new_text = ' '.join([t.text for t in token_seq])
-                new_indexes = [token_seq[0].idx, token_seq[-1].idx + len(token_seq[-1].text)]
+                new_text, new_indexes = get_text_and_indexes(token_seq)
                 ambs_found[req.id].append(create_ambiguity_object(
                     amb_obj,
                     text=new_text,
