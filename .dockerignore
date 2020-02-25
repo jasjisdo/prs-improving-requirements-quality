@@ -2,5 +2,8 @@
 docs
 frame
 venv
+coverage-reports
+tests
+test_all.py
 
 demos
