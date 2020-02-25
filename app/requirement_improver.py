@@ -4,48 +4,18 @@ import json
 import re
 import time
 
-# Functionality imports
 import spacy
 from nltk.corpus import wordnet as wn
 from nltk.tokenize import sent_tokenize
+
+from algorithms.lexical import check_lexical
+from algorithms.regexes import check_regexes
+from utils.ambiguity import create_ambiguity_object
 
 wn.ensure_loaded()
 
 
 class RequirementChecker:
-    LITERATURE_DICT = {
-        "NOVEL1": {
-            "Title": "",
-            "Authors": "",
-            "Order": 0
-        },
-        "NOVEL2": {
-            "Title": "",
-            "Authors": "",
-            "Order": 1
-        },
-        "YWRN10": {
-            "Title": "Automatic detection of nocuous coordination ambiguities in natural language requirements",
-            "Authors": "Hui Yang, Alistair Willis, Anne N. De Roeck, B. Nuseibeh",
-            "Order": 2
-        },
-        "FFJK14": {
-            "Title": "Rapid Requirements Checks with Requirements Smells: Two Case Studies",
-            "Authors": "Henning Femmer, Daniel Méndez Fernándeza, Elmar Juergens, Michael Klose, Ilona Zimmer, Jörg Zimmer",
-            "Order": 3
-        },
-        "GCK10": {
-            "Title": "Ambiguity Detection: Towards a Tool Explaining Ambiguity Sources",
-            "Authors": "Benedikt Gleich, Oliver Creighton, Leonid Kof",
-            "Order": 4
-        },
-        "TB13": {
-            "Title": "The Design of SREE — A Prototype Potential Ambiguity Finder for Requirements Specifications and Lessons Learned",
-            "Authors": "Sri Fatimah Tjong, Daniel M. Berry",
-            "Order": 5
-        }
-    }
-
     LEXICON_LOCATION = './app/lexicons'
 
     def __init__(self, reqs, config=None, is_logging=False):
@@ -56,12 +26,12 @@ class RequirementChecker:
         self.amb_algs = {
             'Lexical': {
                 'config_name': 'Lexical',
-                'func': self._check_lexical,
+                'func': check_lexical,
                 'lexicon': json.load(open(f'{self.LEXICON_LOCATION}/lex_lexical.json', encoding='utf-8'))
             },
             'RegularExpressions': {
                 'config_name': 'RegularExpressions',
-                'func': self._check_regexs,
+                'func': check_regexes,
                 'lexicon': json.load(open(f'{self.LEXICON_LOCATION}/lex_regexes.json', encoding='utf-8'))
             },
             'POSRegularExpressions': {
@@ -96,74 +66,8 @@ class RequirementChecker:
             for alg_name in algs_to_remove:
                 del self.amb_algs[alg_name]
 
-    def _get_ambiguity_object(self, amb_obj, *, text, index_start, index_end):
-        return {
-            "title": amb_obj['title'],
-            "description": amb_obj['description'],
-            "language_construct": amb_obj['language_construct'],
-            "text": text,
-            "index_start": index_start,
-            "index_end": index_end
-        }
-
-    def _check_lexical(self, ambs_found, lexicon, req, sentence, sentence_start_index, doc):
-        def whole_phrase_regexp(phrase):
-            # Handle spaces in strings
-            phrase = phrase.replace(' ', '\s')
-
-            try:
-                return re.compile(r'\b{0}\b'.format(phrase), flags=re.I | re.X)
-            except re.error:
-                return re.compile(r'\b\{0}\b'.format(phrase), flags=re.I | re.X)
-
-        def is_userstory(txt):
-            """ checks weather given sentence confirms to user-story template"""
-            x = re.findall("^As [an|a]", txt)
-            y = re.findall(", [Ii] want to", txt)
-            if (x) and (y):
-                return True
-            else:
-                return False
-
-        def is_self_pronoun(txt):
-            """ checks weather given word is of any first-person-form"""
-            x = re.matc("i|my|mine|myselfe|me", txt)
-            if (x):
-                return True
-            else:
-                return False
-
-        # For each phrase in the lexicon
-        for _, amb_obj in lexicon.items():
-            # Go over all phrases in lexicon
-            for word_phrase in amb_obj['lexicon']:
-                # Search for all word phrases in sentence
-                for match in re.finditer(whole_phrase_regexp(word_phrase), sentence):
-                    # Throws out all lexical errors from final result list
-                    # that had been wrongly detected because of misunderstanding of the user-story structure
-                    if not is_userstory(sentence) and not is_self_pronoun(amb_obj):
-                        ambs_found[req.id].append(self._get_ambiguity_object(
-                            amb_obj,
-                            text=match[0],
-                            index_start=sentence_start_index + match.start(),
-                            index_end=sentence_start_index + match.end()
-                        ))
-
-    def _check_regexs(self, ambs_found, lexicon, req, sentence, sentence_start_index, doc):
-        # Go over all regular expressions in lexicon
-        for _, amb_obj in lexicon.items():
-            # Create Python regular expression object
-            regexp = re.compile(amb_obj['regexp'], flags=re.I | re.X)
-            # Search for all regexps in requirement
-            for match in re.finditer(regexp, sentence):
-                ambs_found[req.id].append(self._get_ambiguity_object(
-                    amb_obj,
-                    text=match[0],
-                    index_start=sentence_start_index + match.start(),
-                    index_end=sentence_start_index + match.end()
-                ))
-
-    def _check_posregexs(self, ambs_found, lexicon, req, sentence, sentence_start_index, doc):
+    @staticmethod
+    def _check_posregexs(ambs_found, lexicon, req, sentence, sentence_start_index, doc):
         # Get the original indexes, before the truple design messed with it
         def get_original_indexes(req_original_string, req_tokenized_string, req_truple_string, match):
             # Add up extra letters (indexes) due to truple design
@@ -224,14 +128,15 @@ class RequirementChecker:
 
                 orig_text = ' '.join([req_truple.split('°')[0] for req_truple in match[0].split()])
                 # Save this found ambiguity
-                ambs_found[req.id].append(self._get_ambiguity_object(
+                ambs_found[req.id].append(create_ambiguity_object(
                     amb_obj,
                     text=orig_text,
                     index_start=sentence_start_index + orig_indexes[0],
                     index_end=sentence_start_index + orig_indexes[1]
                 ))
 
-    def _check_compounds(self, ambs_found, lexicon, req, sentence, sentence_start_index, doc):
+    @staticmethod
+    def _check_compounds(ambs_found, lexicon, req, sentence, sentence_start_index, doc):
         # Go over all phrases in lexicon
         for _, amb_obj in lexicon.items():
             for chunk in doc.noun_chunks:
@@ -242,14 +147,15 @@ class RequirementChecker:
                 if len(compound_list) > 2:
                     new_text = ' '.join([t.text for t in compound_list])
                     new_indexes = [compound_list[0].idx, compound_list[-1].idx + len(compound_list[-1].text)]
-                    ambs_found[req.id].append(self._get_ambiguity_object(
+                    ambs_found[req.id].append(create_ambiguity_object(
                         amb_obj,
                         text=new_text,
                         index_start=sentence_start_index + new_indexes[0],
                         index_end=sentence_start_index + new_indexes[1]
                     ))
 
-    def _check_nominals(self, ambs_found, lexicon, req, sentence, sentence_start_index, doc):
+    @staticmethod
+    def _check_nominals(ambs_found, lexicon, req, sentence, sentence_start_index, doc):
         # Go over all phrases in lexicon
         for _, amb_obj in lexicon.items():
 
@@ -284,7 +190,7 @@ class RequirementChecker:
                 if token_seq:
                     new_text = ' '.join([t.text for t in token_seq])
                     new_indexes = [token_seq[0].idx, token_seq[-1].idx + len(token_seq[-1].text)]
-                    ambs_found[req.id].append(self._get_ambiguity_object(
+                    ambs_found[req.id].append(create_ambiguity_object(
                         amb_obj,
                         text=new_text,
                         index_start=sentence_start_index + new_indexes[0],

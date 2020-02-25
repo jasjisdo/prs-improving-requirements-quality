@@ -4,21 +4,24 @@
         "description"   : "Requirements shall avoid possibilities.",
         "lexicon"       : ["actually"],
         "lit_reference" : "TB13",
-        "language_construct": "Ambiguous Adverb or Adjective"
+        "language_construct": "Ambiguous Adverb or Adjective",
+        "activated": true
     },
     "ambiguous_positioning" : {
         "title"         : "Ambiguous Positioning",
         "description"   : "The meaning depends highly on the position.",
         "lexicon"       : ["only", "also", "even"],
         "lit_reference" : "TB13",
-        "language_construct": "Other / Misc"
+        "language_construct": "Other / Misc",
+        "activated": true
     },
     "ambiguous_words"  : {
         "title"         : "Ambiguous Words",
         "description"   : "List of ambiguous words from the Ambiguity Handbook.",
         "lexicon"       : ["include", "after", "before", "next", "previous", "minimum", "maximum"],
         "lit_reference" : "TB13",
-        "language_construct": "Ambiguous Adverb or Adjective"
+        "language_construct": "Ambiguous Adverb or Adjective",
+        "activated": true
     },
     "continuance" : {
         "title"         : "Continuance",
@@ -28,21 +31,24 @@
             "on one hand", "on the other hand", "whereas"
         ],
         "lit_reference" : "TB13",
-        "language_construct": "Other / Misc"
+        "language_construct": "Other / Misc",
+        "activated": true
     },
     "dangerous_plural" : {
         "title"         : "Dangerous Plural",
         "description"   : "Potentially dangerous plural.",
         "lexicon"       : ["all", "each", "every", "any", "few", "little", "many", "much", "several", "some", "a lot"],
         "lit_reference" : "TB13",
-        "language_construct": "Subjective Language"
+        "language_construct": "Subjective Language",
+        "activated": true
     },
     "imprecise" : {
         "title"         : "Imprecise",
         "description"   : "These expressions are not concise.",
         "lexicon"       : ["could", "should", "might"],
         "lit_reference" : "TB13",
-        "language_construct": "Subjective Language"
+        "language_construct": "Subjective Language",
+        "activated": true
     },
     "inside_behaviour" : {
         "title"         : "Inside Behaviour",
@@ -60,21 +66,24 @@
             "to be deﬁned", "to be completed", "to be determined", "to be resolved", "to be speciﬁed"
         ],
         "lit_reference" : "TB13",
-        "language_construct": "Subjective Language"
+        "language_construct": "Subjective Language",
+        "activated": true
     },
     "negative" : {
         "title"         : "Negative",
         "description"   : "Speciﬁcations should be positive.",
         "lexicon"       : ["not"],
         "lit_reference" : "GCK10",
-        "language_construct": "Negative Statement"
+        "language_construct": "Negative Statement",
+        "activated": true
     },
     "negative_reason" : {
         "title"         : "Negative Reason",
         "description"   : "The negative reasons are hardly relevant.",
         "lexicon"       : ["not because"],
         "lit_reference" : "GCK10",
-        "language_construct": "Negative Statement"
+        "language_construct": "Negative Statement",
+        "activated": true
     },
     "optional" : {
         "title"         : "Optional",
@@ -84,49 +93,63 @@
             "if necessary", "if needed", "neither", "nor", "optionally", "otherwise", "possibly", "probably", "whether"
         ],
         "lit_reference" : "TB13",
-        "language_construct": "Ambiguous Adverb or Adjective"
+        "language_construct": "Ambiguous Adverb or Adjective",
+        "activated": true
     },
     "pronoun" : {
         "title"         : "Pronoun",
         "description"   : "Potentially unclear reference.",
         "lexicon"       : [
             "he", "she", "it", "anyone", "anybody", "anything", "everyone", "everybody", "everything", "her", "hers",
-            "herself", "him", "himself", "his", "i", "its", "itself", "me", "mine", "most", "my", "myself", "nobody",
+            "herself", "him", "himself", "his", "its", "itself", "me", "mine", "most", "my", "myself", "nobody",
             "none", "no one", "nothing", "our", "ours", "ourselves", "someone", "somebody", "something", "that", "their",
             "theirs", "them", "themselves", "these", "they", "this", "those", "us", "we", "what", "whatever", "which",
             "whichever", "who", "whoever", "whom", "whomever", "whose", "whosever", "you", "your", "yours", "yourself",
             "yourselves"
         ],
         "lit_reference" : "TB13",
-        "language_construct": "Vague Pronoun"
+        "language_construct": "Vague Pronoun",
+        "activated": true
+    },
+    "pronoun_i" : {
+        "title"         : "Pronoun",
+        "description"   : "Potentially unclear reference.",
+        "lexicon"       : ["i"],
+        "lit_reference" : "TB13",
+        "language_construct": "Vague Pronoun",
+        "activated": true
     },
     "speculation" : {
         "title"         : "Speculation",
         "description"   : "Unnecessary speculation.",
         "lexicon"       : ["usually", "normally"],
         "lit_reference" : "TB13",
-        "language_construct": "Ambiguous Adverb or Adjective"
+        "language_construct": "Ambiguous Adverb or Adjective",
+        "activated": true
     },
     "too_broad" : {
         "title"         : "Too Broad",
         "description"   : "These expressions can refer to too many cases.",
         "lexicon"       : ["otherwise", "else", "if not"],
         "lit_reference" : "TB13",
-        "language_construct": "Subjective Language"
+        "language_construct": "Subjective Language",
+        "activated": true
     },
     "weak" : {
         "title"         : "Weak",
         "description"   : "These weak words are likely to introduce ambiguity.",
         "lexicon"       : ["can", "could", "may", "might", "ought to", "preferred", "should", "will", "would"],
         "lit_reference" : "TB13",
-        "language_construct": "Subjective Language"
+        "language_construct": "Subjective Language",
+        "activated": true
     },
     "wishful_thinking" : {
         "title"         : "Wishful Thinking",
         "description"   : "It is not likely that all errors will be caught, this is wishful thinking and unreasonable.",
         "lexicon"       : ["100 percent", "all errors"],
         "lit_reference" : "TB13",
-        "language_construct": "Other / Misc"
+        "language_construct": "Other / Misc",
+        "activated": true
     },
     "vague" : {
         "title"         : "Vague",
@@ -149,6 +172,7 @@
             "understandable", "unless", "unnecessary", "useful", "various", "varying"
         ],
         "lit_reference" : "TB13",
-        "language_construct": "Subjective Language"
+        "language_construct": "Subjective Language",
+        "activated": true
     }
 }
