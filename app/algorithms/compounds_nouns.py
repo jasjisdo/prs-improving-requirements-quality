@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from utils.ambiguity import create_ambiguity_object
 
 

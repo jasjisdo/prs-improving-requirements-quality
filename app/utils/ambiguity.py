@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 
 def create_ambiguity_object(amb_obj, *, text, index_start, index_end):

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 LITERATURE_DICT = {
     "NOVEL1": {
         "Title": "",

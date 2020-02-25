@@ -1,6 +1,9 @@
+# -*- coding: utf-8 -*-
+
 from nltk.corpus import wordnet as wn
 
 from utils.ambiguity import create_ambiguity_object
+from utils.token_utils import get_text_and_indexes
 
 wn.ensure_loaded()
 
