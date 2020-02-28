@@ -101,20 +101,19 @@
         "description"   : "Potentially unclear reference.",
         "lexicon"       : [
             "he", "she", "it", "anyone", "anybody", "anything", "everyone", "everybody", "everything", "her", "hers",
-            "herself", "him", "himself", "his", "its", "itself", "me", "mine", "most", "my", "myself", "nobody",
-            "none", "no one", "nothing", "our", "ours", "ourselves", "someone", "somebody", "something", "that", "their",
-            "theirs", "them", "themselves", "these", "they", "this", "those", "us", "we", "what", "whatever", "which",
-            "whichever", "who", "whoever", "whom", "whomever", "whose", "whosever", "you", "your", "yours", "yourself",
-            "yourselves"
+            "herself", "him", "himself", "his", "its", "itself", "most", "nobody", "none", "no one", "nothing", "our",
+            "ours", "ourselves", "someone", "somebody", "something", "that", "their", "theirs", "them", "themselves",
+            "these", "they", "this", "those", "us", "we", "what", "whatever", "which", "whichever", "who", "whoever",
+            "whom", "whomever", "whose", "whosever", "you", "your", "yours", "yourself", "yourselves"
         ],
         "lit_reference" : "TB13",
         "language_construct": "Vague Pronoun",
         "activated": true
     },
-    "pronoun_i" : {
+    "pronoun_us" : {
         "title"         : "Pronoun",
-        "description"   : "Potentially unclear reference.",
-        "lexicon"       : ["i"],
+        "description"   : "Potentially unclear reference that are used in user stories.",
+        "lexicon"       : ["i", "my", "mine", "myself", "me"],
         "lit_reference" : "TB13",
         "language_construct": "Vague Pronoun",
         "activated": true
