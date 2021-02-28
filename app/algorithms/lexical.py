@@ -2,8 +2,8 @@
 
 import re as regex
 
-from utils.ambiguity import create_ambiguity_object
-from utils.sentence_utils import is_user_story
+from app.utils.ambiguity import create_ambiguity_object
+from app.utils.sentence_utils import is_user_story
 
 
 def check_lexical(ambs_found, lexicon, req, sentence, sentence_start_index, _):

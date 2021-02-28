@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from utils.ambiguity import create_ambiguity_object
-from utils.token_utils import get_text_and_indexes
+from app.utils.ambiguity import create_ambiguity_object
+from app.utils.token_utils import get_text_and_indexes
 
 
 def check_compounds_nouns(ambs_found, lexicon, req, sentence, sentence_start_index, doc):

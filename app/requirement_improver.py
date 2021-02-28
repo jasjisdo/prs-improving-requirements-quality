@@ -6,11 +6,11 @@ import time
 import spacy
 from nltk.tokenize import sent_tokenize
 
-from algorithms.compounds_nouns import check_compounds_nouns
-from algorithms.lexical import check_lexical
-from algorithms.nominals import check_nominals
-from algorithms.pos_regexes import check_pos_regexes
-from algorithms.regexes import check_regexes
+from app.algorithms.compounds_nouns import check_compounds_nouns
+from app.algorithms.lexical import check_lexical
+from app.algorithms.nominals import check_nominals
+from app.algorithms.pos_regexes import check_pos_regexes
+from app.algorithms.regexes import check_regexes
 
 
 class RequirementChecker:
